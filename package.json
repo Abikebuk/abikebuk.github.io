@@ -1,0 +1,7 @@
+{
+  "name": "abikebuk.github.io",
+  "version": "1.0.0",
+  "dependencies": {
+    "@abikebuk/digitalization": "^1.1.1"
+  }
+}
