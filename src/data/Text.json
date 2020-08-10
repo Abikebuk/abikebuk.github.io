@@ -1,0 +1,20 @@
+{
+  "Head" : {
+    "title" : {
+      "fr" : "Portofolio de Rettana Muon",
+      "en" : "Rettana Muon's Portfolio"
+    }
+  },
+  "Header" : {
+    "title" : {
+      "fr" : "Portofolio de Rettana Muon",
+      "en" : "Rettana Muon's Portfolio"
+    }
+  },
+  "Content" : {
+    "hello" : {
+      "en" : "Hi, my name is Rettana Muon.",
+      "fr" : "Bonjour, Je m'apelle Rettana Muon."
+    }
+  }
+}

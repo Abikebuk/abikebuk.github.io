@@ -1,0 +1,6 @@
+{
+  "languages" : [
+    { "id":"en", "name":"English" },
+    { "id":"fr", "name":"Français" }
+  ]
+}

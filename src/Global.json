@@ -1,0 +1,8 @@
+{
+  "keys": {
+    "language": "lang"
+  },
+  "vars": {
+    "default_language" : "en"
+  }
+}
