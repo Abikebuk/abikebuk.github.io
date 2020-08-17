@@ -1,10 +1,9 @@
 <template>
-  <div id="app">
+  <div id="app" ref="app">
       <Header></Header>
       <!--suppress HtmlDeprecatedTag -->
       <Content></Content>
       <Footer></Footer>
-    <router-view/>
   </div>
 </template>
 
@@ -15,12 +14,31 @@ import Footer from '@/components/Footer.vue';
 
 export default {
   components: { Footer, Content, Header },
+
+  computed: {
+    appHeight() {
+      return this.$store.state.appHeight;
+    },
+  },
+  methods: {
+    setAppHeight() {
+      this.$store.commit('appHeight', this.$refs.app.clientHeight);
+    },
+    setLanguageOnStartup() {
+      const langKey = this.$GLOBAL.keys.language;
+      const defaultLang = this.$GLOBAL.vars.defaultLanguage;
+      if (!this.$cookies.isKey(langKey)) {
+        this.setLanguage(defaultLang);
+      } else {
+        this.$store.commit('language', this.getCookieLanguage());
+      }
+    },
+  },
   created() {
-    const langKey = this.$GLOBAL.keys.language;
-    const defaultLang = this.$GLOBAL.vars.default_language;
-    if (!this.$cookies.isKey(langKey)) {
-      this.setLanguage(defaultLang);
-    }
+    this.setLanguageOnStartup();
+  },
+  mounted() {
+    this.setAppHeight();
   },
 };
 </script>

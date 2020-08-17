@@ -1,9 +1,9 @@
 <template>
-  <div id="header">
+  <div id="header" ref="header">
     <div class="container-fluid">
       <div class="row">
         <div id="header-title" class="col">
-          <a id="header-title-link" :href="'/' + getLanguage()" >
+          <a id="header-title-link" :href="'/' + getLanguage" >
             <span id="header-title-text">Rettana Muon's Portofolio</span>
           </a>
         </div>
@@ -14,7 +14,9 @@
               v-bind:key="l.id"
               v-bind:name="l.name"
               v-on:click="setLanguage(l.id)">
-              <a :href="'/' + l.id"><span class="header-languages-text">{{l.name}}</span></a>
+              <router-link :to="'/' + l.id">
+                <span class="header-languages-text">{{l.name}}</span>
+              </router-link>
             </li>
           </ol>
         </div>
@@ -31,21 +33,40 @@ export default {
       lang: this.$_lang.languages,
     };
   },
+  computed: {
+    headerHeight() {
+      return this.$store.state.headerHeight;
+    },
+    getLanguage() {
+      return this.$store.getters.language;
+    },
+  },
+  methods: {
+    setHeaderHeight() {
+      this.$store.commit('headerHeight', this.$refs.header.clientHeight);
+    },
+  },
+  mounted() {
+    this.setHeaderHeight(this.$refs.header.clientHeight);
+  },
 };
 </script>
 
 <style scoped lang="stylus">
   #header
     display flex
+    position fixed
+    width 100%
     margin 0
     padding 3px 15px 3px 15px
     color header-main-color
-    background-color header-background-color
+    background-color header-main-background-color
     border-bottom-style solid
+    border-bottom-color header-sub-background-color
     #header-title
       a
         text-decoration  none
-        color #ffffff
+        color header-main-color
         font-family: header-title-font
         font-size 24pt
         font-weight 900
@@ -60,6 +81,9 @@ export default {
         padding 0
         list-style  none
       a
+        &:hover
+          color navajowhite
+        color header-sub-color
         text-decoration none
         #header-languages-text
           font-family default-font-family
